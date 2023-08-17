@@ -1,12 +1,21 @@
 import React, { SetStateAction, Dispatch } from 'react';
+import {toast} from "react-toastify";
 
 interface Props {
   fileName: string;
   setFileName: Dispatch<SetStateAction<string>>;
+  setStep: Dispatch<SetStateAction<number>>;
 }
 
-const ChoiceDeco = ({ fileName, setFileName }: Props) => {
+const ChoiceDeco = ({ fileName, setFileName, setStep }: Props) => {
   const CANDLE_IMAGES = ['candle1.png', 'candle2.png', 'candle3.png', 'candle4.png', 'candle5.png'];
+  const nextStep = () => {
+    if(!fileName) {
+      toast.error('장식을 선택해주세요');
+      return;
+    }
+    setStep(2);
+  }
 
   return (
     <>
@@ -23,6 +32,7 @@ const ChoiceDeco = ({ fileName, setFileName }: Props) => {
           ))
         }
       </div>
+      <button className='button' onClick={nextStep}>다음으로</button>
     </>
   );
 

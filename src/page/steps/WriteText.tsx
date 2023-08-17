@@ -1,14 +1,28 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import {toast} from "react-toastify";
 
 interface Props {
   content: string;
   setContent: Dispatch<SetStateAction<string>>;
+  setStep: Dispatch<SetStateAction<number>>;
+  submit: () => void;
 }
 
-const WriteText = ({ content, setContent }: Props) => {
+const WriteText = ({ content, setContent, setStep, submit}: Props) => {
   const handleSetContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
+  const prevStep = () => {
+    setStep(1);
+  }
+
+  const nextStep = () => {
+    if(!content) {
+      toast.error('장식을 선택해주세요');
+      return;
+    }
+    submit();
+  }
 
   return (
     <>
@@ -16,6 +30,8 @@ const WriteText = ({ content, setContent }: Props) => {
       <div className='deco-write-container'>
         <textarea name='content' value={content} onChange={handleSetContent} />
       </div>
+      <button className='button' onClick={prevStep}>이전으로</button>
+      <button className='button' onClick={nextStep}>장식하기</button>
     </>
   );
 };
