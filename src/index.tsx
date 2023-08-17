@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './css/reset.css';
 import './fonts/fonts.css';
 import './css/common.css';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from './page/Main';
 import SignIn from './page/SignIn';
 import SignUp from './page/SignUp';
 import Cake from './page/Cake';
 import WriteModal from './page/WriteModal';
-import { RecoilRoot } from 'recoil';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,15 @@ root.render(
     <RouterProvider
       router={router}
       fallbackElement={<div>Loading...</div>} />
+    <ToastContainer
+      position="bottom-center"
+      autoClose={1500}
+      closeButton={false}
+      hideProgressBar={true}
+      newestOnTop={false}
+      closeOnClick
+      theme="colored"
+    />
   </RecoilRoot>,
 );
 

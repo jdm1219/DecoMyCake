@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import {accessTokenState} from "../atoms/user";
+import {toast} from "react-toastify";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const SignIn = () => {
       navigate(`/cake/${id}`);
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        alert(err.response?.data?.message);
+        toast.error(err.response?.data?.message);
       }
       console.log(err);
     }

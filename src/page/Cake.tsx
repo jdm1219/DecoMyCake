@@ -5,6 +5,7 @@ import usePagination from '../hooks/usePagination';
 import useApiLoading from '../hooks/useApiLoading';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../atoms/user';
+import {toast} from "react-toastify";
 
 const PAGE_SIZE = 3;
 
@@ -42,7 +43,7 @@ const Cake = () => {
 
   const copyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    alert('링크가 복사되었습니다.');
+    toast.success('링크가 복사되었습니다.');
   };
 
   const openCreatePostModal = () => {

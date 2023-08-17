@@ -2,6 +2,7 @@ import {useState} from "react";
 import {signUp} from "../api/auth";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import {toast} from "react-toastify";
 
 const SignUp = () => {
   const [id, setId] = useState('')
@@ -14,7 +15,7 @@ const SignUp = () => {
       console.log(data);
     } catch (err) {
       if (axios.isAxiosError(err))  {
-        alert(err.response?.data?.message);
+        toast.error(err.response?.data?.message);
       } else {
         console.log(err);
       }
