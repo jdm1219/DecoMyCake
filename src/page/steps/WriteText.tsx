@@ -5,10 +5,9 @@ interface Props {
   content: string;
   setContent: Dispatch<SetStateAction<string>>;
   setStep: Dispatch<SetStateAction<number>>;
-  submit: () => void;
 }
 
-const WriteText = ({ content, setContent, setStep, submit}: Props) => {
+const WriteText = ({ content, setContent, setStep}: Props) => {
   const handleSetContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
@@ -21,7 +20,7 @@ const WriteText = ({ content, setContent, setStep, submit}: Props) => {
       toast.error('장식을 선택해주세요');
       return;
     }
-    submit();
+    setStep(3);
   }
 
   return (
@@ -31,7 +30,7 @@ const WriteText = ({ content, setContent, setStep, submit}: Props) => {
         <textarea name='content' value={content} onChange={handleSetContent} />
       </div>
       <button className='button' onClick={prevStep}>이전으로</button>
-      <button className='button' onClick={nextStep}>장식하기</button>
+      <button className='button' onClick={nextStep}>다음으로</button>
     </>
   );
 };

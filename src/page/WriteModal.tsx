@@ -4,6 +4,7 @@ import WriteText from './steps/WriteText';
 import {useNavigate, useParams} from 'react-router-dom';
 import {createPost} from '../api/post';
 import {toast} from "react-toastify";
+import ChoiceReadingDate from './steps/ChoiceReadingDate';
 
 const WriteModal = () => {
   const navigate = useNavigate();
@@ -43,6 +44,10 @@ const WriteModal = () => {
             2: <WriteText
               content={content}
               setContent={setContent}
+              setStep={setStep}
+            />,
+            3: <ChoiceReadingDate
+              setReadingDate={setReadingDate}
               setStep={setStep}
               submit={submit}
             />,

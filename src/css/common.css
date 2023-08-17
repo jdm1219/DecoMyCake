@@ -236,3 +236,27 @@ body, html {
   cursor: text;
   border-color: #333333;
 }
+
+.date-selector-container {
+  display: flex;
+  align-items: center;
+}
+
+#remainDate {
+  height: 135px;
+}
+#remainDate .highlight {
+  background-color: rgb(255, 204, 204);
+}
+
+#remainDate .select-wrap:before {
+  background-image: linear-gradient(to bottom, rgb(255, 204, 204) 4.68%, rgba(255, 204, 204, 0));
+}
+
+#remainDate .select-wrap:after {
+  background-image: linear-gradient(to top, rgb(255, 204, 204) 4.68%, rgba(255, 204, 204, 0));
+}
+
+#remainDate li {
+  padding-left: 0;
+}
