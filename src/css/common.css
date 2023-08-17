@@ -6,3 +6,226 @@ body, html {
   font-size: 13px;
   line-height: 1.2;
 }
+
+#root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 420px;
+  height: auto;
+  min-height: 100%;
+  padding: 40px 0 0 0;
+  box-sizing: border-box;
+  background: url("../images/main-background.jpg") repeat;
+  background-size: contain;
+}
+
+.button {
+  width: 100%;
+  height: 30px;
+  border: none;
+  background-color: #fff;
+  box-shadow: 10px 10px 0 #ef9f9f;
+  font-family: 'Gamja Flower', serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.input {
+  width: 100%;
+  height: 30px;
+  border: #ccc;
+  font-family: 'Gamja Flower', serif;
+  font-size: 16px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+#root h2 {
+  font-size: 30px;
+  text-align: center;
+  color: #222;
+}
+
+#root h3 {
+  font-size: 20px;
+  text-align: center;
+  color: #222;
+}
+
+.main section {
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  text-align: center;
+}
+
+.main section a {
+  display: block;
+  max-width: 200px;
+  width: 100%;
+}
+
+.join-form,
+.login-form {
+  margin: 0 auto;
+  padding: 30px 0;
+  width: 260px;
+}
+
+.join-form p,
+.login-form p {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.join-form .input,
+.login-form .input {
+  padding: 0 6px;
+  box-sizing: border-box;
+}
+
+.join-form .button,
+.login-form .button {
+  margin-top: 20px;
+  max-width: 200px;
+}
+
+.create-account-wrap {
+  text-align: center;
+}
+
+.cake-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  flex: 1 auto;
+  padding-bottom: 45px;
+}
+
+.cake-container .button {
+  max-width: 300px;
+}
+
+.cake-content {
+  flex: 1 auto;
+}
+
+.write-modal-container {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background-color: #ffcccc;
+  padding: 45px 20px;
+  box-sizing: border-box;
+}
+
+.write-modal-container .button {
+  flex: 0 auto;
+  max-width: 300px;
+}
+
+.write-modal-content {
+  flex: 1 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.close-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.close-button:after {
+  display: block;
+  content: "\00d7";
+  width: 100%;
+  height: 100%;
+}
+
+.deco-select-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 20px 0;
+}
+
+.deco-select-container label {
+  width: calc(33.3333% - 10px);
+  display: block;
+  position: relative;
+}
+
+.deco-select-container label:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.deco-select-container label input {
+  display: none;
+}
+
+.deco-img-container img {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0 #ef9f9f;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  transition: 0.2s;
+}
+
+.deco-select-container input:checked + div img {
+  border-color: #333333;
+}
+
+.deco-write-container {
+  padding: 20px 0;
+}
+
+.deco-write-container textarea {
+  font-family: 'Gamja Flower', serif;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  outline: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: center;
+  resize: none;
+  transition: 0.2s;
+}
+
+.deco-write-container textarea:focus {
+  cursor: text;
+  border-color: #333333;
+}
