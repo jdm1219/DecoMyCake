@@ -1,5 +1,5 @@
 import React, { SetStateAction, Dispatch } from 'react';
-import {toast} from "react-toastify";
+import { toast } from 'react-toastify';
 
 interface Props {
   fileName: string;
@@ -8,14 +8,14 @@ interface Props {
 }
 
 const ChoiceDeco = ({ fileName, setFileName, setStep }: Props) => {
-  const CANDLE_IMAGES = ['candle1.png', 'candle2.png', 'candle3.png', 'candle4.png', 'candle5.png'];
+  const CANDLE_IMAGES = ['candle.png', 'cherry.png', 'strawberry.png'];
   const nextStep = () => {
-    if(!fileName) {
+    if (!fileName) {
       toast.error('장식을 선택해주세요');
       return;
     }
     setStep(2);
-  }
+  };
 
   return (
     <>

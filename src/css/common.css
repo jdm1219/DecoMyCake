@@ -1,6 +1,7 @@
 body, html {
   margin: 0;
-  height: 100%;
+  height: calc(var(--dvh, 1dvh) * 100);
+  height: 100dvh;
   color: #222222;
   font-family: 'Gamja Flower', serif;
   font-size: 13px;
@@ -117,12 +118,74 @@ body, html {
 
 .cake-content {
   flex: 1 auto;
+  padding: 30px 0;
 }
+
+.cake-content .cake-image {
+  position: relative;
+}
+
+.cake-content .cake-deco {
+  position: absolute;
+  transform: translate(-50%, -100%);
+}
+
+.cake-content .cake-deco:nth-child(1) {
+  top: 9%;
+  left: 50%;
+}
+
+.cake-content .cake-deco:nth-child(2) {
+  top: 30%;
+  left: 23%;
+}
+
+.cake-content .cake-deco:nth-child(3) {
+  top: 37%;
+  left: 40%;
+}
+
+.cake-content .cake-deco:nth-child(4) {
+  top: 37%;
+  left: 60%;
+}
+
+.cake-content .cake-deco:nth-child(5) {
+  top: 30%;
+  left: 77%;
+}
+
+.cake-content .cake-deco:nth-child(6) {
+  top: 54%;
+  left: 14%;
+}
+
+.cake-content .cake-deco:nth-child(7) {
+  top: 60%;
+  left: 30%;
+}
+
+.cake-content .cake-deco:nth-child(8) {
+  top: 63%;
+  left: 50%;
+}
+
+.cake-content .cake-deco:nth-child(9) {
+  top: 60%;
+  left: 70%;
+}
+
+.cake-content .cake-deco:nth-child(10) {
+  top: 54%;
+  left: 86%;
+}
+
 
 .write-modal-container {
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: calc(var(--dvh, 1dvh) * 100);
+  height: 100dvh;
   top: 0;
   left: 0;
   background-color: #ffcccc;
@@ -166,6 +229,7 @@ body, html {
 .deco-select-container {
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   gap: 15px;
   width: 100%;
   flex: 1 auto;
@@ -245,6 +309,7 @@ body, html {
 #remainDate {
   height: 135px;
 }
+
 #remainDate .highlight {
   background-color: rgb(255, 204, 204);
 }

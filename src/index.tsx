@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './css/reset.css';
 import './fonts/fonts.css';
 import './css/common.css';
+import './utils/vh';
 import reportWebVitals from './reportWebVitals';
 import Main from './page/Main';
 import SignIn from './page/SignIn';

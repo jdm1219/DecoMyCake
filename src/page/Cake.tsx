@@ -5,14 +5,13 @@ import usePagination from '../hooks/usePagination';
 import useApiLoading from '../hooks/useApiLoading';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../atoms/user';
-import {toast} from "react-toastify";
+import { toast } from 'react-toastify';
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 10;
 
 const Cake = () => {
   const navigate = useNavigate();
   const userInfo = useRecoilValue(userState);
-  // 파라미터를 받아올 땐 match 안에 들어있는 params 값을 참조합니다.
   const { userId } = useParams();
   const [page, setPage] = useState(1);
   const isMyPage = useMemo(() => {
@@ -65,17 +64,19 @@ const Cake = () => {
       <h3>
         {userId}님에게<br />
         <strong>{total}</strong>개의 메세지가 전달됐어요!
-        {posts.map(({ content }) => content)}
       </h3>
       <div className='cake-content'>
-        {posts?.map(post => (<div>{post.content}</div>))}
+        <div className='cake-image'>
+          {posts?.map(post => (
+            <div className='cake-deco'><img src={`${process.env.PUBLIC_URL}/assets/${post.fileName}`} alt='' /></div>))}
+          <img src={`${process.env.PUBLIC_URL}/assets/cake.png`} alt='' />
+        </div>
       </div>
       {
         isMyPage
           ? (
             <>
               <button onClick={copyLink} className='button'>케이크 링크 복사하기</button>
-              <button onClick={openCreatePostModal} className='button'>케이크 꾸며주기</button>
             </>
           )
           : (

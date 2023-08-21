@@ -1,24 +1,29 @@
-import {atom, selector} from 'recoil';
-import jwtDecode from "jwt-decode";
+import { atom, selector } from 'recoil';
+import jwtDecode from 'jwt-decode';
 
 interface User {
   id: string;
   nickname: string;
 }
+
 export const ACCESS_TOKEN_KEY = 'accessToken';
 export const USER_KEY = 'user';
 
 const localStorageEffect =
   (key: string) =>
-    ({setSelf, onSet}: any) => {
+    ({ setSelf, onSet }: any) => {
       const savedValue = localStorage.getItem(key);
       if (savedValue != null) {
-        setSelf(JSON.parse(savedValue));
+        try {
+          setSelf(JSON.parse(savedValue));
+        } catch {
+          setSelf(savedValue);
+        }
       }
       onSet((newValue: any, _: any, isReset: boolean) => {
         isReset
           ? localStorage.removeItem(key)
-          : typeof newValue === "string"
+          : typeof newValue === 'string'
             ? localStorage.setItem(key, newValue)
             : localStorage.setItem(key, JSON.stringify(newValue));
       });
@@ -32,12 +37,12 @@ export const accessTokenState = atom({
 
 export const userState = selector({
   key: USER_KEY,
-  get: ({get}) => {
+  get: ({ get }) => {
     try {
       const token = get(accessTokenState);
       return jwtDecode<User>(token);
     } catch (e) {
-      return null
+      return null;
     }
-  }
+  },
 });
