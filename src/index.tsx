@@ -14,6 +14,7 @@ import SignIn from './page/SignIn';
 import SignUp from './page/SignUp';
 import Cake from './page/Cake';
 import WriteModal from './page/WriteModal';
+import NotFound from './page/NotFound';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '*',
+    element: <NotFound />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(
@@ -49,13 +54,13 @@ root.render(
       router={router}
       fallbackElement={<div>Loading...</div>} />
     <ToastContainer
-      position="bottom-center"
+      position='bottom-center'
       autoClose={1500}
       closeButton={false}
       hideProgressBar={true}
       newestOnTop={false}
       closeOnClick
-      theme="colored"
+      theme='colored'
     />
   </RecoilRoot>,
 );

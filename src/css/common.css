@@ -325,3 +325,12 @@ body, html {
 #remainDate li {
   padding-left: 0;
 }
+
+.not-found {
+  text-align: center;
+}
+
+.not-found .button {
+  margin-top: 20px;
+  width: 200px;
+}
