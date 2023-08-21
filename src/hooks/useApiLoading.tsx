@@ -9,6 +9,7 @@ function useApiLoading<T>(apiCall: () => Promise<T>) {
 
   const execute = async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const data = await apiCall();
       setData(data);

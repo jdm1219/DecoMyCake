@@ -2,11 +2,12 @@ import { useEffect, useMemo, useState } from 'react';
 import ChoiceDeco from './steps/ChoiceDeco';
 import WriteText from './steps/WriteText';
 import { useNavigate, useParams } from 'react-router-dom';
-import { createPost } from '../api/post';
+import { createPost, getPost } from '../api/post';
 import { toast } from 'react-toastify';
 import ChoiceReadingDate from './steps/ChoiceReadingDate';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../atoms/user';
+import useApiLoading from '../hooks/useApiLoading';
 
 const WriteModal = () => {
   const navigate = useNavigate();
@@ -16,6 +17,13 @@ const WriteModal = () => {
   const [content, setContent] = useState('');
   const [fileName, setFileName] = useState('');
   const [readingDate, setReadingDate] = useState('');
+
+  const { isLoading, error, execute } = useApiLoading(() => createPost({
+    id: userId as string,
+    content,
+    fileName,
+    readingDate,
+  }));
 
   const isMyPage = useMemo(() => {
     return userId === userInfo?.id;
@@ -28,19 +36,23 @@ const WriteModal = () => {
     }
   }, []);
 
-  const closeModal = (event: React.MouseEvent) => {
-    event.preventDefault();
+  const closeModal = (event?: React.MouseEvent) => {
+    event?.preventDefault?.();
     navigate(-1);
   };
 
 
   const submit = async () => {
-    await createPost({
-      id: userId as string,
-      content,
-      fileName,
-      readingDate,
-    });
+    if (isLoading) {
+      return;
+    }
+    await execute();
+    if (error) {
+      toast.error('등록에 실패했어요😢');
+      return;
+    }
+    toast.success('등록되었습니다😊');
+    closeModal();
   };
 
 
