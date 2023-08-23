@@ -24,7 +24,7 @@ const SignUp = () => {
       toast.success('회원가입 되었습니다😊');
       navigate('/sign-in');
     } catch (err: any) {
-      toast.error(err.message || '알수없는 에러가 발생했습니다.');
+      toast.error(err.message || '알수없는 에러가 발생했어요');
     } finally {
       setIsLoading(false);
     }
@@ -37,7 +37,7 @@ const SignUp = () => {
     if (!nickname) {
       errorMessage = '닉네임을 입력해주세요';
     } else if (!NICKNAME_EXP.test(nickname)) {
-      errorMessage = '닉네임은 특수문자를 사용할 수 없습니다';
+      errorMessage = '닉네임은 특수문자를 사용할 수 없어요';
     } else if (!id) {
       errorMessage = '아이디를 입력해주세요';
     } else if (!ID_EXP.test(id)) {
