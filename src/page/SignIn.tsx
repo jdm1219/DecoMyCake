@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { signIn } from '../api/auth';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import {accessTokenState} from "../atoms/user";
-import {toast} from "react-toastify";
+import { accessTokenState } from '../atoms/user';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const setAccessToken = useSetRecoilState(accessTokenState);
@@ -17,12 +18,9 @@ const SignIn = () => {
     try {
       const { accessToken } = await signIn({ id, password });
       setAccessToken(accessToken);
-      navigate(`/cake/${id}`);
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        toast.error(err.response?.data?.message);
-      }
-      console.log(err);
+      navigate(searchParams.get('redirect') || `/cake/${id}`);
+    } catch (err: any) {
+      toast.error(err.message || '알수없는 에러가 발생했어요');
     }
   };
 

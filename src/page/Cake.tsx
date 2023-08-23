@@ -1,16 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { createSearchParams, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getPost, Post } from '../api/post';
 import usePagination from '../hooks/usePagination';
 import useApiLoading from '../hooks/useApiLoading';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../atoms/user';
 import { toast } from 'react-toastify';
+import NotFound from './NotFound';
 
 const PAGE_SIZE = 10;
 
 const Cake = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const userInfo = useRecoilValue(userState);
   const { userId } = useParams();
   const [page, setPage] = useState(1);
@@ -52,9 +54,11 @@ const Cake = () => {
   if (error) {
     switch (error.status) {
       case 401:
-        return <div>로그인 후 이용가능합니다.</div>;
+        toast.info('로그인 후 이용할 수 있어요😊');
+        navigate(`/sign-in?${createSearchParams({ redirect: location.pathname })}`);
+        return <></>;
       case 404:
-        return <div>존재하지 않는 유저입니다.</div>;
+        return <NotFound />;
       default:
         return <div>에러가 발생했습니다.</div>;
     }
