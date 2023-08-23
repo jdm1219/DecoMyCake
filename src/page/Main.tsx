@@ -1,16 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { verify } from '../api/auth';
-import axios from 'axios';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../atoms/user';
 
 const Main = () => {
+  const navigate = useNavigate();
+  const userInfo = useRecoilValue(userState);
   const checkLogIn = async () => {
     try {
       await verify();
+      navigate(`/cake/${userInfo?.id}`);
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log(error.response?.status);
-      }
+      console.log('not logged in');
     }
   };
   checkLogIn();
