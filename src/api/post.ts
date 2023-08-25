@@ -1,24 +1,23 @@
-import {http} from "../utils/http";
+import { http } from '../utils/http';
 
-export function createPost({id, content, fileName, readingDate}: CreatePost) {
+export function createPost({ id, content, fileName, readingDate }: CreatePost) {
   return http.post('post', {
     id,
     content,
     fileName,
-    readingDate
-  })
+    readingDate,
+  });
 }
 
 
-
-export function getPost({id, page, size}: GetPost) {
+export function getPost({ id, page, size }: GetPost) {
   return http.get<CommonListResponse<Post>>('post', {
     params: {
       id,
       page,
-      size
-    }
-  })
+      size,
+    },
+  });
 }
 
 export interface Post {
@@ -28,6 +27,7 @@ export interface Post {
   insertDt: string;
   lockYn: string;
   nickname: string;
+  readingDate: string;
 }
 
 export interface GetPost {

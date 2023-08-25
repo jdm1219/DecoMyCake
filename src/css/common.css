@@ -130,6 +130,16 @@ body, html {
   transform: translate(-50%, -100%);
 }
 
+.cake-content .cake-deco.locked:after {
+  content: "🔒";
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: .65;
+}
+
 .cake-content .cake-deco:nth-child(1) {
   top: 9%;
   left: 50%;

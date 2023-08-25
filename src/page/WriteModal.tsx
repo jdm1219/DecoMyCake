@@ -1,16 +1,21 @@
 import { useEffect, useMemo, useState } from 'react';
 import ChoiceDeco from './steps/ChoiceDeco';
 import WriteText from './steps/WriteText';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { createPost } from '../api/post';
 import { toast } from 'react-toastify';
 import ChoiceReadingDate from './steps/ChoiceReadingDate';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../atoms/user';
 
+interface Props {
+  execute: () => Promise<void>;
+}
+
 const WriteModal = () => {
   const navigate = useNavigate();
   const userInfo = useRecoilValue(userState);
+  const { execute } = useOutletContext<Props>();
   const { userId } = useParams();
   const [step, setStep] = useState(1);
   const [content, setContent] = useState('');
@@ -48,6 +53,7 @@ const WriteModal = () => {
         readingDate,
       });
       toast.success('등록되었습니다😊');
+      await execute();
       closeModal();
     } catch {
       toast.error('등록에 실패했어요😢');

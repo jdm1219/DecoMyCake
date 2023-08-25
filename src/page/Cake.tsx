@@ -7,6 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { userState } from '../atoms/user';
 import { toast } from 'react-toastify';
 import NotFound from './NotFound';
+import dayjs from 'dayjs';
 
 const PAGE_SIZE = 10;
 
@@ -41,6 +42,19 @@ const Cake = () => {
     return data?.content || [];
   }, [data]);
 
+  const handlePostClick = (post: Post) => {
+    if (!isMyPage) {
+      return;
+    }
+    if (post.lockYn === 'Y') {
+      const diff = dayjs().diff(dayjs(post.readingDate), 'day');
+      toast.info(`${diff}일 후 확인할 수 있어요`);
+      return;
+    }
+
+    // TODO: 메세지 확인 modal 만들기
+    toast.info(post.content);
+  };
 
   const copyLink = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -72,7 +86,14 @@ const Cake = () => {
       <div className='cake-content'>
         <div className='cake-image'>
           {posts?.map(post => (
-            <div className='cake-deco'><img src={`${process.env.PUBLIC_URL}/assets/${post.fileName}`} alt='' /></div>))}
+            <div
+              key={post.id}
+              className={`cake-deco ${post.lockYn === 'Y' ? 'locked' : ''}`}
+              onClick={() => handlePostClick(post)}
+            >
+              <img src={`${process.env.PUBLIC_URL}/assets/${post.fileName}`} alt='' />
+            </div>))
+          }
           <img src={`${process.env.PUBLIC_URL}/assets/cake.png`} alt='' />
         </div>
       </div>
@@ -87,7 +108,7 @@ const Cake = () => {
             <button onClick={openCreatePostModal} className='button'>케이크 꾸며주기</button>
           )
       }
-      <Outlet />
+      <Outlet context={{ execute }} />
     </div>
   );
 };
