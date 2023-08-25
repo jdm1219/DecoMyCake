@@ -2,8 +2,7 @@ import Axios, { AxiosRequestConfig } from 'axios';
 import { ACCESS_TOKEN_KEY } from '../atoms/user';
 
 const axios = Axios.create({
-  // baseURL: 'https://rational-amalie-domyeong.koyeb.app/api/v1'
-  baseURL: 'http://192.168.35.131:3000/api/v1',
+  baseURL: 'https://cakyyy.me/api/v1',
 });
 axios.interceptors.request.use((config) => {
   config.headers.Authorization = localStorage.getItem(ACCESS_TOKEN_KEY);
