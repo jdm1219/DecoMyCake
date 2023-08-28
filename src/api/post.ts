@@ -11,7 +11,7 @@ export function createPost({ id, content, fileName, readingDate }: CreatePost) {
 
 
 export function getPost({ id, page, size }: GetPost) {
-  return http.get<CommonListResponse<Post>>('post', {
+  return http.get<GetPostResponse>('post', {
     params: {
       id,
       page,
@@ -46,4 +46,8 @@ export interface CreatePost {
 interface CommonListResponse<T> {
   content: T[];
   total: number;
+}
+
+interface GetPostResponse extends CommonListResponse<Post> {
+  nickname: string;
 }

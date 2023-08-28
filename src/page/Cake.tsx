@@ -43,6 +43,9 @@ const Cake = () => {
   const posts = useMemo<Post[]>(() => {
     return data?.content || [];
   }, [data]);
+  const nickname = useMemo(() => {
+    return data?.nickname;
+  }, [data]);
 
   const handlePostClick = (post: Post) => {
     if (!isMyPage) {
@@ -80,7 +83,7 @@ const Cake = () => {
   return (
     <div className='cake-container'>
       <h3>
-        {userId}님에게<br />
+        {nickname}님에게<br />
         <strong>{total}</strong>개의 메세지가 전달됐어요!
       </h3>
       <div className='cake-content'>
