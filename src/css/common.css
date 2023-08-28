@@ -27,7 +27,7 @@ body, html {
   height: 30px;
   border: none;
   background-color: #fff;
-  box-shadow: 10px 10px 0 #ef9f9f;
+  box-shadow: 10px 10px 0 #d37878;
   font-family: 'Gamja Flower', serif;
   font-size: 16px;
   cursor: pointer;
@@ -190,6 +190,51 @@ body, html {
   left: 86%;
 }
 
+.read-modal-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: calc(var(--dvh, 1dvh) * 100);
+  height: 100dvh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .7);
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.read-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background-color: #ef9f9f;
+  border-radius: 15px;
+  padding: 30px 20px;
+}
+
+.read-modal-post-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: auto;
+}
+
+.read-modal-post-content p {
+  font-size: 16px;
+  margin: auto;
+  text-align: center;
+  white-space: break-spaces;
+  word-break: break-word;
+}
 
 .write-modal-container {
   position: absolute;

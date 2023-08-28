@@ -8,6 +8,7 @@ import { userState } from '../atoms/user';
 import { toast } from 'react-toastify';
 import NotFound from './NotFound';
 import dayjs from 'dayjs';
+import ReadPostModal from '../component/ReadPostModal';
 
 const PAGE_SIZE = 10;
 
@@ -20,6 +21,7 @@ const Cake = () => {
   const isMyPage = useMemo(() => {
     return userId === userInfo?.id;
   }, [userId, userInfo]);
+  const [selectedPost, setSelectedPost] = useState<Post | null>();
 
   const { isLoading, data, error, execute } = useApiLoading(() => getPost({
     id: userId || '',
@@ -51,9 +53,7 @@ const Cake = () => {
       toast.info(`${diff}일 후 확인할 수 있어요`);
       return;
     }
-
-    // TODO: 메세지 확인 modal 만들기
-    toast.info(post.content);
+    setSelectedPost(post);
   };
 
   const copyLink = () => {
@@ -91,10 +91,10 @@ const Cake = () => {
               className={`cake-deco ${post.lockYn === 'Y' ? 'locked' : ''}`}
               onClick={() => handlePostClick(post)}
             >
-              <img src={`${process.env.PUBLIC_URL}/assets/${post.fileName}`} alt='' />
+              <img src={`${process.env.PUBLIC_URL}/assets/${post.fileName}`} alt='' draggable='false' />
             </div>))
           }
-          <img src={`${process.env.PUBLIC_URL}/assets/cake.png`} alt='' />
+          <img src={`${process.env.PUBLIC_URL}/assets/cake.png`} alt='' draggable='false' />
         </div>
       </div>
       {
@@ -107,6 +107,9 @@ const Cake = () => {
           : (
             <button onClick={openCreatePostModal} className='button'>케이크 꾸며주기</button>
           )
+      }
+      {
+        selectedPost ? <ReadPostModal post={selectedPost} closeModal={() => setSelectedPost(null)} /> : null
       }
       <Outlet context={{ execute }} />
     </div>
