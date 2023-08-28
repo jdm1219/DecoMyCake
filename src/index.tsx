@@ -15,33 +15,40 @@ import SignUp from './page/SignUp';
 import Cake from './page/Cake';
 import WriteModal from './page/WriteModal';
 import NotFound from './page/NotFound';
+import Layout from './component/Layout';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Main />,
-  },
-  {
-    path: '/sign-in',
-    element: <SignIn />,
-  },
-  {
-    path: '/sign-up',
-    element: <SignUp />,
-  },
-  {
-    path: '/cake/:userId',
-    element: <Cake />,
+    element: <Layout />,
     children: [
       {
-        path: 'write',
-        element: <WriteModal />,
+        path: '/',
+        element: <Main />,
+      },
+      {
+        path: '/sign-in',
+        element: <SignIn />,
+      },
+      {
+        path: '/sign-up',
+        element: <SignUp />,
+      },
+      {
+        path: '/cake/:userId',
+        element: <Cake />,
+        children: [
+          {
+            path: 'write',
+            element: <WriteModal />,
+          },
+        ],
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
-  },
-  {
-    path: '*',
-    element: <NotFound />,
   },
 ]);
 
