@@ -47,7 +47,7 @@ const Cake = () => {
       return;
     }
     if (post.lockYn === 'Y') {
-      const diff = dayjs().diff(dayjs(post.readingDate), 'day');
+      const diff = dayjs(post.readingDate).diff(dayjs(), 'day');
       toast.info(`${diff}일 후 확인할 수 있어요`);
       return;
     }
